@@ -6,7 +6,7 @@ import { Request, Response } from 'express';
  *
  */
 const getProjects = (req: Request, res: Response) => {
-  res.json({
+  res.status(200).json({
     message: `Get all projects`,
   });
 };
@@ -17,7 +17,12 @@ const getProjects = (req: Request, res: Response) => {
  *
  */
 const createProject = (req: Request, res: Response) => {
-  res.json({
+  if (!req.body.title) {
+    res.status(400);
+    throw new Error('Title is required');
+  }
+
+  res.status(201).json({
     message: `Create project`,
   });
 };
@@ -28,7 +33,7 @@ const createProject = (req: Request, res: Response) => {
  *
  */
 const getProject = (req: Request, res: Response) => {
-  res.json({
+  res.status(200).json({
     message: `Get project ${req.params.id}`,
   });
 };
@@ -39,7 +44,7 @@ const getProject = (req: Request, res: Response) => {
  *
  */
 const updateProject = (req: Request, res: Response) => {
-  res.json({
+  res.status(200).json({
     message: `Update project ${req.params.id}`,
   });
 };
@@ -50,7 +55,7 @@ const updateProject = (req: Request, res: Response) => {
  *
  */
 const deleteProject = (req: Request, res: Response) => {
-  res.json({
+  res.status(200).json({
     message: `Delete project ${req.params.id}`,
   });
 };
